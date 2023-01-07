@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 
 
 
 const Signin = () => {
 
-    const { register, formState: { errors }, handleSubmit } = useForm()
+    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { signInAuth } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
+
     const handleSignin = data => {
         console.log(data);
+        setLoginError('');
+
+        signInAuth(data.email, data.pass)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.log(error.message);
+                setLoginError(error.message)
+            });
     }
 
     return (
@@ -31,6 +46,10 @@ const Signin = () => {
                         {errors.pass && <p className='text-red-600' role="alert">{errors.pass?.message}</p>}
                     </div>
                     <input className='btn w-full mb-2' value="Sign In" type="submit" />
+
+                    <div>
+                        {loginError && <p className='text-red-600'>{loginError}</p>}
+                    </div>
                 </form>
 
                 <p>New here? <Link className='text-cyan-600' to="/signup">Get your annoator.</Link></p>
