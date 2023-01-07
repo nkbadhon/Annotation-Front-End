@@ -4,26 +4,16 @@ import { AuthContext } from '../../../../../Context/AuthProvider';
 
 
 
-
 function Navbar() {
-    const { user, logOut } = useContext(AuthContext)
+
+    const [darkMode, setDarkMode] = useState(false);
+    const { user, logOut } = useContext(AuthContext);
     const handleSignOut = () => {
         logOut()
             .then(() => { })
             .catch(error => console.log(error))
     }
 
-
-    // Darkmood Starts here
-    // Declaring a state variable for the dark mode setting
-    const [darkMode, setDarkMode] = useState(false)
-
-    // Toggle the dark mode setting when the button is clicked
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode)
-    }
-
-    // Darkmood Ends here
     const menuItems = <React.Fragment>
         <li className="rounded-lg"><Link to='/'>Home</Link></li>
         {user?.uid ?
@@ -38,11 +28,14 @@ function Navbar() {
         }
 
         <li className="rounded-lg"><Link to='/blog'>FAQ</Link></li>
+        <li className="rounded-lg"><button onClick={() => setDarkMode(!darkMode)}>
+            Toggle Dark Mode
+        </button></li>
 
 
     </React.Fragment >
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -61,12 +54,6 @@ function Navbar() {
             </div>
 
         </div>
-        // <nav className={darkMode ? 'dark-mode' : 'light-mode'}>
-        //     <h1>Annotator</h1>
-        //     <button onClick={toggleDarkMode}>
-        //         {darkMode ? 'Light Mode' : 'Dark Mode'}
-        //     </button>
-        // </nav>
     );
 };
 
