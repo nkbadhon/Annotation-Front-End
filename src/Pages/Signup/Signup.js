@@ -1,17 +1,37 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Signup = () => {
+    const navigate = useNavigate();
 
+    const { googleSignIn } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
+
+    const handleGoogleSignIn = () => {
+        googleSignIn(googleProvider)
+            .then(result => {
+                const user = result.user;
+                toast('User Created!');
+                navigate(from, { replace: true });
+                console.log(user);
+
+            })
+            .catch(error => console.log(error))
+    }
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
 
     const handleSignUp = data => {
         console.log(data);
+        setSignUpError('');
+
         createUser(data.email, data.pass)
             .then(result => {
                 const user = result.user;
@@ -26,6 +46,7 @@ const Signup = () => {
             })
             .catch(error => {
                 console.log(error);
+                setSignUpError(error.message)
             })
     }
     return (
@@ -57,11 +78,12 @@ const Signup = () => {
                         {errors.pass && <p className='text-red-600' role="alert">{errors.pass?.message}</p>}
                     </div>
                     <input className='btn w-full mb-2' value="Sign Up" type="submit" />
+                    {signUpError && <p className='text-red-600'>{signUpError}</p>}
                 </form>
 
                 <p>Already have an annotator? <Link className='text-cyan-600' to="/signin">Get it.</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'> Continue with Google.</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'> Continue with Google.</button>
             </div>
         </div>
     );
