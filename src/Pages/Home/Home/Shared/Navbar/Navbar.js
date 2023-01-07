@@ -1,6 +1,20 @@
 import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../../../Context/AuthProvider';
+
+
+
+
 function Navbar() {
+    const { user, logOut } = useContext(AuthContext)
+    const handleSignOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error))
+    }
+
+
+    // Darkmood Starts here
     // Declaring a state variable for the dark mode setting
     const [darkMode, setDarkMode] = useState(false)
 
@@ -9,18 +23,22 @@ function Navbar() {
         setDarkMode(!darkMode)
     }
 
+    // Darkmood Ends here
     const menuItems = <React.Fragment>
         <li className="rounded-lg"><Link to='/'>Home</Link></li>
-        <li className="rounded-lg"><Link to='/signin'>SignIn</Link></li>
-        <li className="rounded-lg"><Link to='/signup'>SignUp</Link></li>
-        <li className="rounded-lg"><Link to='/blog'>FAQ</Link></li>
-        {/* {user?.uid ?
+        {user?.uid ?
             <>
-                <li><Link to='/dashboard'>Dashboard</Link></li>
-                <li><button onClick={logout Handle} >Log Out</button></li>
+                <li className="rounded-lg"><Link to='/dashboard'>Dashboard</Link></li>
+                <li className="rounded-lg"><button onClick={handleSignOut} >SignOut</button></li>
             </>
-            : <li><Link to='/login'>Login</Link></li>
-} */}
+            : <>
+                <li className="rounded-lg"><Link to='/signin'>SignIn</Link></li>
+                <li className="rounded-lg"><Link to='/signup'>SignUp</Link></li>
+            </>
+        }
+
+        <li className="rounded-lg"><Link to='/blog'>FAQ</Link></li>
+
 
     </React.Fragment >
     return (

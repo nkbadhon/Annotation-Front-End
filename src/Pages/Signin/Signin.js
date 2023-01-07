@@ -30,7 +30,7 @@ const Signin = () => {
     return (
         <div className='h-[800px] flex justify-center items-center'>
             <div className='w-96 p-7'>
-                <h2 className='text-4xl text-center mb-4'> SignIn</h2>
+                <h2 className='text-4xl text-center mb-4'> Sign In</h2>
                 <div className="divider"></div>
                 <form onSubmit={handleSubmit(handleSignin)}>
                     <div className="form-control w-full max-w-xs">
