@@ -9,6 +9,10 @@ const Dashboard = () => {
     const [videoUrl, setVideoUrl] = useState(null);
     const [videoColor, setVideoColor] = useState('color');
     const [videoSize, setVideoSize] = useState(1);
+    const [muted, setMuted] = useState(false);
+    const toggleMute = () => {
+        setMuted((prev) => !prev);
+    };
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -62,11 +66,16 @@ const Dashboard = () => {
 
                         {/* import a video */}
                         <div className="text-center mt-20">
+
                             {videoUrl ? (
-                                <div className=''>
+                                <div className='App'>
+
                                     <button onClick={toggleVideoColor} className="btn btn-outline">Toggle Color</button>
+
                                     <br />
+
                                     <label htmlFor="video-size">Video Size:</label>
+
                                     <input
                                         type="range"
                                         id="video-size"
@@ -77,20 +86,22 @@ const Dashboard = () => {
                                         onChange={handleVideoSizeChange}
                                     />
 
-                                    <video
-                                        src={videoUrl}
-                                        style={{ filter: videoColor === 'gray' ? 'grayscale(100%)' : 'none' }}
-                                        muted
-                                        width={`${videoSize * 40}%`}
-
-                                    />
+                                    <div className='flex justify-center'>
+                                        <video
+                                            src={videoUrl}
+                                            style={{ filter: videoColor === 'gray' ? 'grayscale(100%)' : 'none' }}
+                                            muted
+                                            width={`${videoSize * 40}%`}
+                                            controls
+                                        />
+                                    </div>
                                     <br />
 
 
                                 </div>
                             ) : (
                                 <div>
-                                    <input type="file" onChange={handleFileChange} />
+                                    <input type="file" accept="video/*" onChange={handleFileChange} />
                                 </div>
                             )}
                         </div>

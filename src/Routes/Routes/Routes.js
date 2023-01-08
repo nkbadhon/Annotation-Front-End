@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>
-    }
+    },
 ])
 
 export default router;
