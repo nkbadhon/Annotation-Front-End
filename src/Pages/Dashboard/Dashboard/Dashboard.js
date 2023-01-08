@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useRef, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import '../../../App.css';
@@ -9,10 +9,7 @@ const Dashboard = () => {
     const [videoUrl, setVideoUrl] = useState(null);
     const [videoColor, setVideoColor] = useState('color');
     const [videoSize, setVideoSize] = useState(1);
-    const [muted, setMuted] = useState(false);
-    const toggleMute = () => {
-        setMuted((prev) => !prev);
-    };
+
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -31,6 +28,10 @@ const Dashboard = () => {
         setVideoUrl(null);
     };
     //  Functions for video end
+
+    // Framse selection function
+
+    // Framse selection function ends
 
 
     const { user } = useContext(AuthContext);
@@ -70,25 +71,35 @@ const Dashboard = () => {
 
                             {videoUrl ? (
                                 <div className=''>
+                                    {/* Frame */}
+
+                                    {/* Frame end */}
+
+
 
                                     <button className='btn btn-outline' onClick={closePlayer}>Close player</button>
 
+                                    {/* Change color to graystyle */}
+                                    <button onClick={toggleVideoColor} className="btn btn-outline m-2">Change Color</button>
 
-                                    <button onClick={toggleVideoColor} className="btn btn-outline">Toggle Color</button>
+                                    {/* Window resize  */}
+                                    <button className='btn btn-outline'>
+                                        <label htmlFor="video-size" className='m-2'>Window Size:</label>
 
-                                    <br />
+                                        <input
+                                            type="range"
+                                            id="video-size"
+                                            min="1"
+                                            max="1.2"
+                                            step="0.1"
+                                            value={videoSize}
+                                            onChange={handleVideoSizeChange}
+                                            className="mb-2"
+                                        />
+                                    </button>
 
-                                    <label htmlFor="video-size">Window Size:</label>
 
-                                    <input
-                                        type="range"
-                                        id="video-size"
-                                        min="1"
-                                        max="1.2"
-                                        step="0.1"
-                                        value={videoSize}
-                                        onChange={handleVideoSizeChange}
-                                    />
+
 
                                     <div className='flex justify-center'>
                                         <video
