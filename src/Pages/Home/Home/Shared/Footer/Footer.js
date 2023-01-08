@@ -6,15 +6,15 @@ const Footer = () => {
     return (
         <footer className="footer footer-center p-4  h-44 border rounded-lg ">
             <div className="grid grid-flow-col gap-4">
-                <Link href="/" className="text-lg">About us</Link>
-                <Link href="/" className="text-lg">Contact</Link>
+                <Link to="/aboutus" className="text-lg">About me</Link>
+
 
             </div>
             <div>
                 <div className="grid grid-flow-col gap-4">
-                    <Link to=""> <FaFacebook /> </Link>
-                    <Link to=""> <FaTwitter /> </Link>
-                    <Link to=""> <FaInstagram /> </Link>
+                    <Link > <FaFacebook /> </Link>
+                    <Link > <FaTwitter /> </Link>
+                    <Link > <FaInstagram /> </Link>
                 </div>
             </div>
             <div>

@@ -52,7 +52,7 @@ const Dashboard = () => {
                 <div className="flex-1">
                     {/* Logo */}
                     <img className="w-10 pl-2 rounded" src={myImage} alt="Brain" />
-                    <ul className="btn btn-ghost normal-case text-xl">Annotator</ul>
+                    <ul className="btn btn-ghost normal-case text-xl"><Link to='/'>Annotator</Link></ul>
                 </div>
                 <div className="flex-none pr-3">
                     <ul className="menu p-4 w-60 text-base-content text-center">
@@ -143,7 +143,14 @@ const Dashboard = () => {
                         <ul className="menu p-4 w-80 bg-base-100 text-base-content">
 
                             <li> <Link to='/'>Exit to Home</Link> </li>
-                            <li></li>
+                            <li> <Link>Upload</Link> </li>
+                            <li> <Link>Annotation</Link> </li>
+                            <li> <Link>Configuration</Link> </li>
+                            <li> <Link>Preferences</Link> </li>
+                            <li> <Link>Help</Link> </li>
+
+                            <li> <Link>Sign Out</Link> </li>
+
                         </ul>
                     </div>
                 </div>
