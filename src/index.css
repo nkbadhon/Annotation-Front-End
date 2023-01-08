@@ -18,8 +18,20 @@ code {
 }
 
 .footer {
-  position: fixed;
+  position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
+}
+
+/* Light mode styles */
+.light-mode {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Dark mode styles */
+.dark-mode {
+  background-color: #000;
+  color: #fff;
 }
