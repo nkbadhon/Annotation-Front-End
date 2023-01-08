@@ -38,17 +38,13 @@ const Dashboard = () => {
     }
     // DarkMode end
 
-
-
-
-
     const { user } = useContext(AuthContext);
     console.log(user);
     return (
         <div className={darkMode ? 'dark-mode' : 'light-mode'}>
 
             {/* Navbar for dashboard */}
-            <div className="navbar bg-base-100 drop-shadow-md	">
+            <div className="navbar">
                 <div className="flex-1">
                     {/* Logo */}
                     <img className="w-10 pl-2 rounded" src={myImage} alt="Brain" />
@@ -56,7 +52,7 @@ const Dashboard = () => {
                 </div>
                 <div className="flex-none pr-3">
                     <ul className="menu p-4 w-60 text-base-content text-center">
-                        <ul><p>Welcome <br /> {user?.displayName && <h3>{user.displayName}</h3>}</p></ul>
+                        <ul><p className='text-gray-500'>Welcome Master, <br /> {user?.displayName && <h3>{user.displayName}</h3>}</p></ul>
                     </ul>
                     <ul><button onClick={toggleDarkMode}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
@@ -92,13 +88,13 @@ const Dashboard = () => {
 
 
 
-                                    <button className='btn btn-outline' onClick={closePlayer}>Close player</button>
+                                    <button className='btn btn-outline text-gray-500' onClick={closePlayer}>Close player</button>
 
                                     {/* Change color to graystyle */}
-                                    <button onClick={toggleVideoColor} className="btn btn-outline m-2">Change Color</button>
+                                    <button onClick={toggleVideoColor} className="btn btn-outline m-2 text-gray-500">Change Color</button>
 
                                     {/* Window resize  */}
-                                    <button className='btn btn-outline'>
+                                    <button className='btn btn-outline text-gray-500'>
                                         <label htmlFor="video-size" className='m-2'>Window Size:</label>
 
                                         <input
@@ -154,7 +150,7 @@ const Dashboard = () => {
                         </ul>
                     </div>
                 </div>
-                {/* drawer-2 end */}
+                {/* drawer end */}
 
 
 

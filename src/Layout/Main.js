@@ -12,10 +12,6 @@ const Main = () => {
         setDarkMode(!darkMode);
     }
     // DarkMode end
-
-
-
-
     return (
         <div className={darkMode ? 'dark-mode' : 'light-mode'}>
             <Navbar onToggleDarkMode={toggleDarkMode}></Navbar>
