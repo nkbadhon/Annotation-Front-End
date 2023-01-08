@@ -27,7 +27,9 @@ const Dashboard = () => {
     const handleVideoSizeChange = (event) => {
         setVideoSize(event.target.value);
     }
-
+    const closePlayer = () => {
+        setVideoUrl(null);
+    };
     //  Functions for video end
 
 
@@ -44,7 +46,6 @@ const Dashboard = () => {
                 <div className="flex-none">
                     <ul className="menu p-4 w-60 text-base-content text-center">
                         <ul><p>Welcome <br /> {user?.displayName && <h3>{user.displayName}</h3>}</p></ul>
-
                     </ul>
 
                     <button className="btn btn-square btn-ghost">
@@ -68,19 +69,22 @@ const Dashboard = () => {
                         <div className="text-center mt-20">
 
                             {videoUrl ? (
-                                <div className='App'>
+                                <div className=''>
+
+                                    <button className='btn btn-outline' onClick={closePlayer}>Close player</button>
+
 
                                     <button onClick={toggleVideoColor} className="btn btn-outline">Toggle Color</button>
 
                                     <br />
 
-                                    <label htmlFor="video-size">Video Size:</label>
+                                    <label htmlFor="video-size">Window Size:</label>
 
                                     <input
                                         type="range"
                                         id="video-size"
                                         min="1"
-                                        max="2"
+                                        max="1.2"
                                         step="0.1"
                                         value={videoSize}
                                         onChange={handleVideoSizeChange}
@@ -91,7 +95,7 @@ const Dashboard = () => {
                                             src={videoUrl}
                                             style={{ filter: videoColor === 'gray' ? 'grayscale(100%)' : 'none' }}
                                             muted
-                                            width={`${videoSize * 40}%`}
+                                            width={`${videoSize * 50}%`}
                                             controls
                                         />
                                     </div>
